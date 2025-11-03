@@ -1,0 +1,27 @@
+
+> uptime-kuma@2.0.2 start
+> npm run start-server
+
+
+> uptime-kuma@2.0.2 start-server
+> node server/server.js
+
+Welcome to Uptime Kuma
+Your Node.js version: 20.19.0
+[36m2025-11-02T16:09:38-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Env: production
+[36m2025-11-02T16:09:40-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Uptime Kuma Version: 2.0.2
+[36m2025-11-02T16:09:40-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Loading modules
+[36m2025-11-02T16:09:42-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Creating express and socket.io instance
+[36m2025-11-02T16:09:42-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Server Type: HTTP
+[36m2025-11-02T16:09:42-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Data Dir: ./data/
+[36m2025-11-02T16:09:42-08:00[0m [[38;5;117mDB[0m] [36mINFO:[0m Database Type: sqlite
+[36m2025-11-02T16:09:43-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Connected to the database
+[36m2025-11-02T16:09:43-08:00[0m [[32mSERVER[0m] [36mINFO:[0m Listening on 3001
+[36m2025-11-02T16:10:43-08:00[0m [[38;5;141mSOCKET[0m] [36mINFO:[0m New polling connection, IP = ::1
+[36m2025-11-02T16:10:43-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Login by token. IP=::1
+[36m2025-11-02T16:10:43-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Username from JWT: root
+[36m2025-11-02T16:10:43-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Successfully logged in user root. IP=::1
+[36m2025-11-02T16:10:47-08:00[0m [[38;5;141mSOCKET[0m] [36mINFO:[0m New polling connection, IP = ::1
+[36m2025-11-02T16:10:47-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Login by token. IP=::1
+[36m2025-11-02T16:10:47-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Username from JWT: root
+[36m2025-11-02T16:10:47-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Successfully logged in user root. IP=::1

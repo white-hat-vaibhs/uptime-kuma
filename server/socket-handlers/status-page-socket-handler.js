@@ -165,6 +165,7 @@ module.exports.statusPageSocketHandler = (socket) => {
             statusPage.custom_css = config.customCSS;
             statusPage.show_powered_by = config.showPoweredBy;
             statusPage.show_certificate_expiry = config.showCertificateExpiry;
+            statusPage.show_response_time = config.showResponseTime;
             statusPage.modified_date = R.isoDateTime();
             statusPage.google_analytics_tag_id = config.googleAnalyticsId;
 

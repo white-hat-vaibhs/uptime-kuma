@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="period-options">
+        <div v-if="$root.getMonitorChartData" class="period-options">
             <button
                 type="button" class="btn btn-light dropdown-toggle btn-period-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false"
@@ -184,6 +184,17 @@ export default {
                 this.heartbeatList = null;
                 this.$root.storage()["chart-period"] = newPeriod;
             } else {
+                // Check if getMonitorChartData is available (websocket method)
+                // It won't be available on public status pages
+                if (!this.$root.getMonitorChartData) {
+                    // Fallback to "recent" mode for public status pages
+                    this.chartPeriodHrs = "0";
+                    if (this.$root.toastError) {
+                        this.$root.toastError(this.$t ? this.$t("Historical chart data is not available on public status pages") : "Historical chart data is not available on public status pages");
+                    }
+                    return;
+                }
+
                 this.loading = true;
 
                 let period;
@@ -196,7 +207,9 @@ export default {
 
                 this.$root.getMonitorChartData(this.monitorId, period, (res) => {
                     if (!res.ok) {
-                        this.$root.toastError(res.msg);
+                        if (this.$root.toastError) {
+                            this.$root.toastError(res.msg);
+                        }
                     } else {
                         this.chartRawData = res.data;
                         this.$root.storage()["chart-period"] = newPeriod;
@@ -215,6 +228,13 @@ export default {
         }
     },
     created() {
+        // On public status pages, only "recent" mode (period "0") is available
+        // since getMonitorChartData is a websocket method
+        if (!this.$root.getMonitorChartData) {
+            this.chartPeriodHrs = "0";
+            return;
+        }
+
         // Load chart period from storage if saved
         let period = this.$root.storage()["chart-period"];
         if (period != null) {
@@ -298,7 +318,9 @@ export default {
         getChartDatapointsFromHeartbeatList() {
             // Render chart using heartbeatList
             let lastHeartbeatTime;
-            const monitorInterval = this.$root.monitorList[this.monitorId]?.interval;
+            // Try to get interval from monitorList first, then publicMonitorList (for public status pages)
+            const monitorInterval = this.$root.monitorList?.[this.monitorId]?.interval || 
+                                   this.$root.publicMonitorList?.[this.monitorId]?.interval;
             let pingData = [];  // Ping Data for Line Chart, y-axis contains ping time
             let downData = [];  // Down Data for Bar Chart, y-axis is 1 if target is down (red color), under maintenance (blue color) or pending (orange color), 0 if target is up
             let colorData = []; // Color Data for Bar Chart
@@ -387,7 +409,9 @@ export default {
         getChartDatapointsFromStats() {
             // Render chart using UptimeCalculator data
             let lastHeartbeatTime;
-            const monitorInterval = this.$root.monitorList[this.monitorId]?.interval;
+            // Try to get interval from monitorList first, then publicMonitorList (for public status pages)
+            const monitorInterval = this.$root.monitorList?.[this.monitorId]?.interval || 
+                                   this.$root.publicMonitorList?.[this.monitorId]?.interval;
 
             let avgPingData = [];  // Ping Data for Line Chart, y-axis contains ping time
             let minPingData = [];  // Ping Data for Line Chart, y-axis contains ping time

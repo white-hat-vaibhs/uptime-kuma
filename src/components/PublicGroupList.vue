@@ -71,6 +71,16 @@
                                         <HeartbeatBar size="mid" :monitor-id="monitor.element.id" />
                                     </div>
                                 </div>
+                                <!-- Ping Chart -->
+                                <div v-if="showResponseTime && monitor.element.type !== 'group'" class="mt-3">
+                                    <div class="shadow-box big-padding text-center ping-chart-wrapper">
+                                        <div class="row">
+                                            <div class="col">
+                                                <PingChart :monitor-id="monitor.element.id" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </template>
                     </Draggable>
@@ -82,11 +92,16 @@
 </template>
 
 <script>
+import { defineAsyncComponent } from "vue";
 import MonitorSettingDialog from "./MonitorSettingDialog.vue";
 import Draggable from "vuedraggable";
 import HeartbeatBar from "./HeartbeatBar.vue";
 import Uptime from "./Uptime.vue";
 import Tag from "./Tag.vue";
+
+const PingChart = defineAsyncComponent(() =>
+    import("./PingChart.vue")
+);
 
 export default {
     components: {
@@ -95,6 +110,7 @@ export default {
         HeartbeatBar,
         Uptime,
         Tag,
+        PingChart,
     },
     props: {
         /** Are we in edit mode? */
@@ -109,6 +125,11 @@ export default {
         /** Should expiry be shown? */
         showCertificateExpiry: {
             type: Boolean,
+        },
+        /** Should response time chart be shown? */
+        showResponseTime: {
+            type: Boolean,
+            default: false,
         }
     },
     data() {
