@@ -25,3 +25,7 @@ Your Node.js version: 20.19.0
 [36m2025-11-02T16:10:47-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Login by token. IP=::1
 [36m2025-11-02T16:10:47-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Username from JWT: root
 [36m2025-11-02T16:10:47-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Successfully logged in user root. IP=::1
+[36m2025-11-02T16:22:28-08:00[0m [[38;5;141mSOCKET[0m] [36mINFO:[0m New polling connection, IP = ::1
+[36m2025-11-02T16:22:28-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Login by token. IP=::1
+[36m2025-11-02T16:22:28-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Username from JWT: root
+[36m2025-11-02T16:22:28-08:00[0m [[38;5;208mAUTH[0m] [36mINFO:[0m Successfully logged in user root. IP=::1
